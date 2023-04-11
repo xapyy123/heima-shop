@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="search-box">
+			<my-search @click='gotoSearch'></my-search>
+		</view>
 		<!-- <!- 头部轮播图 -> -->
 		<swiper :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item,index) in swiperList" :key="index">
@@ -106,8 +109,13 @@
 						url: '/pages/cate/cate'
 					})
 				}
-			}
-
+			},
+            //搜索页面跳转
+            	gotoSearch(){
+            		uni.navigateTo({
+            			url:'/subpkg/search/search'
+            		})
+            	}
 		},
 		onLoad() {
 			this.getSwiperList()
@@ -162,5 +170,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
+	}
+	
+	.search-box{
+		position: sticky;
+		top: 0;
+		z-index: 999;
 	}
 </style>
